@@ -1,20 +1,19 @@
-#ifndef LISTVIEWMODEL_H
-#define LISTVIEWMODEL_H
+#ifndef MYTABLEMODEL_H
+#define MYTABLEMODEL_H
 
-#include <QObject>
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 
-class ListViewModel : public  QAbstractListModel
-{
+class MyTableModel : public QAbstractTableModel
+{ 
     Q_OBJECT
 public:
-                ListViewModel(QObject* parent = 0);
+                MyTableModel(QObject* parent = 0);
     int         rowCount(const QModelIndex &parent) const;
     int         columnCount(const QModelIndex &parent) const;
     QVariant    data(const QModelIndex &index, int role) const;
+
     bool        canFetchMore(const QModelIndex &parent) const;
     void        fetchMore(const QModelIndex &parent);
-    QVariant    headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
 private:
     QList<QString> mDataList;
@@ -24,4 +23,5 @@ private slots:
     void        loadMoreData();
 };
 
-#endif // LISTVIEWMODEL_H
+
+#endif // MYTABLEMODEL_H
